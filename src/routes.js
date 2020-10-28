@@ -11,9 +11,18 @@ const users = []
 router.post('/signup', async (req, res) => {
     const { username, password } = req.body
     users.push({ username, password })
-    const newUser = users.find((user) => user.username === username)
-    const token = await jwt.sign({ username: newUser.username }, 'MY_SECRET')
-    res.status(201).json({ token })
+    const user = users.find((user) => user.username === username)
+    const token = await jwt.sign({ username: user.username }, 'MY_SECRET')
+    return res.status(200).json({ token })
+})
+
+router.post('/signin', async (req, res) => {
+    const { username, password } = req.body
+    const user = users.find((user) => user.username === username)
+    if (!user) return res.status(401).json({ message: 'User is not exists' })
+    if (user.password !== password) return res.status(401).json({ message: 'Wrong Password' })
+    const token = await jwt.sign({ username: user.username }, 'MY_SECRET')
+    return res.status(200).json({ token })
 })
 
 router.get('/posts', (req, res) => {
