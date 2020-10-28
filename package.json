@@ -4,13 +4,15 @@
     "description": "",
     "main": "src/index.js",
     "scripts": {
-        "start": "nodemon src/index.js"
+        "start": "node src/index.js",
+        "start:dev": "nodemon src/index.js"
     },
     "keywords": [],
     "author": "Sanders Gutierrez <ing.sanders@gmail.com> (https://sandersgutierrez.github.io)",
     "license": "MIT",
     "dependencies": {
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1"
     },
     "devDependencies": {
         "nodemon": "^2.0.4"

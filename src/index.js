@@ -1,10 +1,9 @@
 'use strict'
 
 const express = require('express')
-const app = express()
+const config = require('./config')
 
-const host = process.env.HOST || '127.0.0.1'
-const port = process.env.PORT || 3000
+const app = express()
 
 app.get('/', (req, res) => {
     res.json({
@@ -12,6 +11,8 @@ app.get('/', (req, res) => {
     })
 })
 
-app.listen(port, () => {
-    console.log(`Server is running on http://${host}:${port}`)
+app.use('/api', require('./routes'))
+
+app.listen(config.port, () => {
+    console.log(`Server is running on http://${config.host}:${config.port}`)
 })
