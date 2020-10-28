@@ -2,11 +2,9 @@
 
 const jwt = require('jsonwebtoken')
 const { readFileSync } = require('fs')
-const { Router } = require('express')
+const router = require('express').Router()
 
-const router = Router()
-
-const users = []
+let users = []
 
 router.post('/signup', async (req, res) => {
     const { username, password } = req.body
@@ -25,9 +23,33 @@ router.post('/signin', async (req, res) => {
     return res.status(200).json({ token })
 })
 
-router.get('/posts', (req, res) => {
+router.get('/posts', verifyToken, (req, res) => {
     const posts = JSON.parse(readFileSync(`${process.cwd()}/data/posts.json`, 'utf-8'))
-    res.json(posts)
+    return res.status(200).json(posts)
 })
+
+function verifyToken(req, res, next) {
+    try {
+        if (!req.headers.authorization) {
+            return res.status(401).send('Unauthorized Request')
+        }
+
+        let token = req.headers.authorization.split(' ')[1]
+        if (token === null) {
+            return res.status(401).send('Unauthorized Request')
+        }
+
+        const payload = jwt.verify(token, 'MY_SECRET')
+        if (!payload) {
+            return res.status(401).send('Unauthorized Request')
+        }
+
+        req.username = payload.username
+
+        next()
+    } catch (error) {
+        return res.status(401).send('Unauthorized Request')
+    }
+}
 
 module.exports = router
