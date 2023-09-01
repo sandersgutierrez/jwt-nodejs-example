@@ -1,13 +1,9 @@
-GET http://localhost:3000/api/users
-
-###
-
 GET http://localhost:3000/api/posts
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbmRlcnMiLCJpYXQiOjE2MDM4ODY0MzR9.J7l-neGWVJxUvUH8nmH5NvBKOYKUsCmdZyclzpFSH0c
 
 ###
 
-POST http://localhost:3000/api/signup
+POST http://localhost:3000/api/sign-up
 Content-Type: application/json
 
 {
@@ -17,10 +13,10 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/api/signin
+POST http://localhost:3000/api/sign-in
 Content-Type: application/json
 
 {
-    "username": "sanders",
-    "password": 12345
+    "username": "admin",
+    "password": "admin"
 }

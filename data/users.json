@@ -228,5 +228,24 @@
             "catchPhrase": "Centralized empowering task-force",
             "bs": "target end-to-end models"
         }
+    },
+    {
+        "id": 11,
+        "name": "Sanders Gutiérrez",
+        "username": "admin",
+        "password": "admin",
+        "email": "ing.sanders@gmail.com",
+        "address": {
+            "street": "Colpayo",
+            "suite": "Apt. 15",
+            "city": "Buenos Aires",
+            "zipcode": "1405",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        },
+        "phone": "54-11-6021-9207",
+        "website": "https://sandersgutierrez.github.io"
     }
 ]

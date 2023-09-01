@@ -8,7 +8,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
     res.json({
         text: 'API works!',
     })
@@ -16,6 +16,6 @@ app.get('/', (req, res) => {
 
 app.use('/api', require('./routes'))
 
-app.listen(config.port, () => {
+app.listen(config.port, config.host, () => {
     console.log(`Server is running on http://${config.host}:${config.port}`)
 })
